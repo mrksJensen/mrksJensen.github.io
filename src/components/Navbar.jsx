@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+import Image from "./Image";
 
 const Navbar = () => {
     const [open,setOpen] = useState(false);
@@ -6,8 +7,8 @@ const Navbar = () => {
     <div className="w-full h-16 md:h-20 flex items-center justify-between">
         {/* LOGO */} 
         <div className="flex items-center gap-4 text-2xl font-bold">
-            <img src="/logo.png" className="h-8 w-8 rounded-full" alt="" />
-            <span>mrksJensen Portfolio</span>
+            <Image src="logo.png" alt="4. sem. logo" w={40} h={40} className="rounded" />
+            <span>mrksJensen's Portefølje</span>
         </div>
         {/* MOBILE MENU */} 
         <div className="md:hidden">
@@ -16,15 +17,27 @@ const Navbar = () => {
                 {open ? "X" : "☰"}
             </div>
                 {/* MOBILE LINK LIST */}
-            <div className={`w-full h-screen flex flex-col items-center justify-center absolute top-16 bg-red-700  transition-all ease-in-out ${
+            <div className={`w-full h-screen flex flex-col items-center justify-center gap-8 font-medium text-lg absolute top-16 transition-all ease-in-out ${
                 open ? "-right-0" : "-right-[100%]"
                 }`}
                 >
-                Menu
+                <a href="/">Hjem</a>
+            <a href="/">Webudvikling & Frontend-teknologier</a>
+            <a href="/">Automatisering & Scripting</a>
+            <a href="/">Om</a>
+            <a href="">
+                <button className="py-2 px-4 rounded-3xl bg-white text-black">Login 👋</button></a>
             </div>
         </div>
         {/* DESKTOP MENU */}  
-        <div className="hidden md:flex">Dg</div>
+        <div className="hidden md:flex items-center justify-center gap-8 xl:gap-12 font-medium">
+            <a href="/">Hjem</a>
+            <a href="/">Webudvikling & Frontend-teknologier</a>
+            <a href="/">Automatisering & Scripting</a>
+            <a href="/">Om</a>
+            <a href="">
+                <button className="py-2 px-4 rounded-3xl bg-white text-black">Login👋</button></a>
+        </div>
         </div>
   )
 }
