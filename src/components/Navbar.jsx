@@ -24,8 +24,8 @@ const Navbar = () => {
                 }`}
                 >
                 <Link to="/">Hjem</Link>
-            <Link to="/">Webudvikling & Frontend-teknologier</Link>
-            <Link to="/">Automatisering & Scripting</Link>
+            {/* <Link to="/">Webudvikling & Frontend-teknologier</Link>
+            <Link to="/">Automatisering & Scripting</Link> */}
             <Link to="/">Om</Link>
             <Link to="/">
                 <button className="py-2 px-4 rounded-3xl bg-white text-black">Login 👋</button>
@@ -35,8 +35,8 @@ const Navbar = () => {
         {/* DESKTOP MENU */}  
         <div className="hidden md:flex items-center justify-center gap-8 xl:gap-12 font-medium">
             <Link to="/">Hjem</Link>
-            <Link to="/">Webudvikling & Frontend-teknologier</Link>
-            <Link to="/">Automatisering & Scripting</Link>
+            {/* <Link to="/">Webudvikling & Frontend-teknologier</Link>
+            <Link to="/">Automatisering & Scripting</Link> */}
             <Link to="/">Om</Link>
             
                 <SignedOut>
