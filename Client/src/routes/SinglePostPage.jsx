@@ -1,35 +1,48 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Image from '../components/Image';
 import PostMenuActions from '../components/PostMenuActions';
 import Search from '../components/Search';
 import Comments from '../components/Comments';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import { format } from 'timeago.js';
+
+const fetchPost = async (slug) => {
+  const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts/${slug}`);
+  return res.data;
+};
 
 const SinglePostPage = () => {
+  const { slug } = useParams();
+
+  const { isPending, error, data } = useQuery({
+    queryKey: ['post', slug],
+    queryFn: () => fetchPost(slug),
+  });
+
+  if (isPending) return 'Indlæser...';
+  if (error) return 'noget gik galt' + error.message;
+  if (!data) return 'indslag ikke fundet';
+
   return (
     <div className="flex flex-col gap-8">
       {/* detail */}
       <div className="flex gap-8">
         <div className="lg:w-3/5 flex flex-col gap-8">
           <h1 className="text-xl md:text-3xl xl:text-4xl 2xl:text-5xl font-semibold">
-            Hlaskfnls lkasmdl. oasnoijfdsogin
+            {data.title}
           </h1>
           <div className="flex items-center gap-2 text-slate-700 text-sm">
             <span>Skrevet af</span>
-            <Link className="text-yellow-700">bent bent</Link>
+            <Link className="text-yellow-700">{data.user.username}</Link>
             <span>D.</span>
-            <Link className="text-yellow-700">frontend</Link>
-            <span>2 dage siden</span>
+            <Link className="text-yellow-700">{data.category}</Link>
+            <span>{format(data.createdAt)}</span>
           </div>
-          <p className="text-slate-800 font-medium">
-            afkmfosmfodmaogkdg afkmfosmfodmaogkdg afkmfosmfodmaogkdg afkmfosmfodmaogkdg
-            afkmfosmfodmaogkdg afkmfosmfodmaogkdg afkmfosmfodmaogkdg afkmfosmfodmaogkdg
-            afkmfosmfodmaogkdgafkmfosmfodmaogkdgafkmfosmfodmaogkdg afkmfosmfodmaogkdg
-            afkmfosmfodmaogkdg afkmfosmfodmaogkdgafkmfosmfodmaogkdg afkmfosmfodmaogkdg
-            afkmfosmfodmaogkdg
-          </p>
+          <p className="text-slate-800 font-medium">{data.desc}</p>
         </div>
         <div className="hidden lg:block w-2/5">
-          <Image src="PostImg.jpeg" w="600" className="rounded-2xl" />
+          {data.img && <Image src={data.img} w="600" className="rounded-2xl" />}
         </div>
       </div>
       <div className=""></div>
@@ -37,97 +50,22 @@ const SinglePostPage = () => {
       <div className="flex flex-col md:flex-row gap-12">
         {/* text */}
         <div className="lg:text-lg flex flex-col gap-6 text-justify">
-          <p>
-            orem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula
-            eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
-            parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec,
-            pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec
-            pede justo, ringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
-            rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
-            mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper
-            nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
-            consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra
-            quis, feugiat a, tellus. Phasellus viverra nulla ut metus
-          </p>
-          <p>
-            varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel
-            augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
-            Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit
-            amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus
-            pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.
-            Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit
-            amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit
-            amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum
-            sodales, augue velit cursus nunc,
-          </p>
-          <p>
-            varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel
-            augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
-            Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit
-            amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus
-            pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.
-            Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit
-            amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit
-            amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum
-            sodales, augue velit cursus nunc,
-          </p>
-          <p>
-            varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel
-            augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
-            Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit
-            amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus
-            pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.
-            Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit
-            amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit
-            amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum
-            sodales, augue velit cursus nunc,
-          </p>
-          <p>
-            varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel
-            augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
-            Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit
-            amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus
-            pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.
-            Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit
-            amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit
-            amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum
-            sodales, augue velit cursus nunc,
-          </p>
-          <p>
-            varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel
-            augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
-            Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit
-            amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus
-            pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.
-            Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit
-            amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit
-            amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum
-            sodales, augue velit cursus nunc,
-          </p>
-          <p>
-            varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel
-            augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
-            Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit
-            amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus
-            pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.
-            Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit
-            amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit
-            amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum
-            sodales, augue velit cursus nunc,
-          </p>
+          <p>{data.content}</p>
         </div>
         {/* menu */}
         <div className="flex-col px-4 h-max sticky top-8">
           <h1 className="mb-4 text-sm font-medium">Forfatter</h1>
           <div className="flex flex-col gap-4 ">
             <div className="flex items-center gap-8">
-              <Image
-                src="userImg.png"
-                className="w-12 h-12 rounded-full object-cover"
-                w="48"
-                h="48"
-              ></Image>
-              <Link className="text-yellow-700">Vladimir bob</Link>
+              {data.user.img && (
+                <Image
+                  src={data.user.img}
+                  className="w-12 h-12 rounded-full object-cover"
+                  w="48"
+                  h="48"
+                ></Image>
+              )}
+              <Link className="text-yellow-700">{data.user.username}</Link>
             </div>
             <p className="text-sm text-gray-800">
               kdlanfsldf slkfmsælfmk asælk smflkm sdflkm sæ
@@ -152,7 +90,7 @@ const SinglePostPage = () => {
           <Search />
         </div>
       </div>
-      <Comments />
+      <Comments postId={data._id} />
     </div>
   );
 };

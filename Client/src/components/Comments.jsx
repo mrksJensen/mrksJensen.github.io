@@ -1,6 +1,25 @@
+import axios from 'axios';
 import Comment from './Comment';
+import { useQuery } from '@tanstack/react-query';
 
-const Comments = () => {
+const fetchComments = async (postId) => {
+  const res = await axios.get(`${import.meta.env.VITE_API_URL}/comments/${postId}`);
+  return res.data;
+};
+
+const Comments = ({ postId }) => {
+  /* const { user } = useUser();
+  const { getToken } = useAuth(); */
+
+  const { isPending, error, data } = useQuery({
+    queryKey: ['comments', postId],
+    queryFn: () => fetchComments(postId),
+  });
+
+  if (isPending) return 'Indlæser...';
+  if (error) return 'noget gik galt' + error.message;
+  if (!data) return 'kommentar ikke fundet';
+
   return (
     <div className="flex flex-col gap-8 lg:w-3/5">
       <h1 className="text-xl text-gray-800 underline">Comments</h1>
@@ -13,14 +32,9 @@ const Comments = () => {
           Send
         </button>
       </div>
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
+      {data.map((comment) => (
+        <Comment key={comment._id} comment={comment} />
+      ))}
     </div>
   );
 };

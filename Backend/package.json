@@ -13,7 +13,9 @@
   "dependencies": {
     "@clerk/express": "^1.7.24",
     "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
     "express": "^5.1.0",
+    "imagekit": "^6.0.0",
     "mongoose": "^8.17.2",
     "svix": "^1.74.1"
   }
