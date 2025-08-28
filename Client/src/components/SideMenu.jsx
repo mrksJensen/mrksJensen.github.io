@@ -48,10 +48,10 @@ const SideMenu = () => {
         <Link className="underline" to="/posts">
           Alle
         </Link>
-        <Link className="underline" to="posts?cat=Webudvikling-&-Frontend-teknologier">
+        <Link className="underline" to="/posts?cat=Webudvikling-Frontend-teknologier">
           Webudvikling & Frontend-teknologier
         </Link>
-        <Link className="underline" to="posts?cat=Automatisering-&-Scripting">
+        <Link className="underline" to="/posts?cat=Automatisering-Scripting">
           Automatisering & Scripting
         </Link>
       </div>

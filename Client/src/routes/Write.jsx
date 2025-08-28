@@ -91,10 +91,10 @@ const Write = () => {
           </label>
           <select name="category" id="" className="p-2 rounded-xl bg-slate-50 shadow-md">
             <option value="Generalt">Generalt</option>
-            <option value="Webudvikling-&-Frontend-teknologier">
+            <option value="Webudvikling-Frontend-teknologier">
               Webudvikling & Frontend-teknologier
             </option>
-            <option value="Automatisering-&-Scripting">Automatisering & Scripting</option>
+            <option value="Automatisering-Scripting">Automatisering & Scripting</option>
           </select>
         </div>
         <textarea
