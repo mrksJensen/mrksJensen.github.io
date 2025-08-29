@@ -35,7 +35,7 @@ const SinglePostPage = () => {
           <div className="flex items-center gap-2 text-slate-700 text-sm">
             <span>Skrevet af</span>
             <Link className="text-yellow-700">{data.user.username}</Link>
-            <span>D.</span>
+            <span>i</span>
             <Link className="text-yellow-700" to={`/posts?cat=${data.category}`}>
               {data.category}
             </Link>

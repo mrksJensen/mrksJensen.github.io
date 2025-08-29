@@ -90,7 +90,7 @@ const Write = () => {
             Vælg valgfag
           </label>
           <select name="category" id="" className="p-2 rounded-xl bg-slate-50 shadow-md">
-            <option value="Generalt">Generalt</option>
+            <option value="Generelt">Generelt</option>
             <option value="Webudvikling-Frontend-teknologier">
               Webudvikling & Frontend-teknologier
             </option>
