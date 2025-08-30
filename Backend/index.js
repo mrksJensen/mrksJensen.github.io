@@ -2,14 +2,27 @@ import express from "express";
 import userRouter from "./routes/user.route.js";
 import postRouter from "./routes/post.route.js";
 import commentRouter from "./routes/comment.route.js";
-import connectDB from "./lib/connectDB.js";
+/* import connectDB from "./lib/connectDB.js"; */
 import webhookRouter from "./routes/webhook.route.js";
 import { clerkMiddleware, requireAuth } from "@clerk/express";
 import cors from "cors";
 
 const app = express();
 
-app.use(cors(process.env.CLIENT_URL));
+const allowed = new Set(
+  [process.env.CLIENT_URL, "http://localhost:5173"].filter(Boolean)
+);
+
+app.use(
+  cors({
+    origin(origin, cb) {
+      if (!origin || allowed.has(origin)) return cb(null, true);
+      return cb(new Error("CORS blocked"));
+    },
+    credentials: false,
+  })
+);
+
 app.use(clerkMiddleware());
 app.use("/webhooks", webhookRouter);
 app.use(express.json());
@@ -47,6 +60,8 @@ app.use("/users", userRouter);
 app.use("/posts", postRouter);
 app.use("/comments", commentRouter);
 
+app.get("/", (req, res) => res.send("Express on Vercel"));
+
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
 
@@ -57,7 +72,9 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(3000, () => {
+/* app.listen(3000, () => {
   connectDB();
   console.log("Server is running!");
-});
+}); */
+
+export default app;
