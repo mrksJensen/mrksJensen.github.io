@@ -91,24 +91,24 @@ import cors from "cors";
 const app = express();
 
 // --- CORS:-
-const allowlist = new Set(
-  [
-    "https://mrksjensen.github.io",
-    "http://localhost:5173",
-    process.env.CLIENT_URL?.replace(/\/$/, ""),
-  ].filter(Boolean)
-);
+const allowlist = new Set([
+  "https://mrksjensen.github.io",
+  "http://localhost:5173",
+]);
 
 app.use(
   cors({
     origin(origin, cb) {
-      if (!origin || allowlist.has(origin.replace(/\/$/, "")))
-        return cb(null, true);
+      if (!origin) return cb(null, false);
+
+      const clean = origin.replace(/\/$/, "");
+      if (allow.has(clean)) return cb(null, true);
+
       return cb(new Error("CORS blocked: " + origin));
     },
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: false,
+    optionsSuccessStatus: 204,
   })
 );
 
