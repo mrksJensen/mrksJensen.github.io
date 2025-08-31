@@ -1,0 +1,46 @@
+name: Deploy Vite React App to GitHub Pages
+
+on:
+  push:
+    branches: ["starter"]  
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Client  
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create .env file from GitHub Secrets
+        run: |
+          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
+          echo "VITE_IK_URL_ENDPOINT=${{ secrets.VITE_IK_URL_ENDPOINT }}" >> .env
+          echo "VITE_IK_PUBLIC_KEY=${{ secrets.VITE_IK_PUBLIC_KEY }}" >> .env
+          echo "VITE_CLERK_PUBLISHABLE_KEY=${{ secrets.VITE_CLERK_PUBLISHABLE_KEY }}" >> .env
+
+      - name: Build Vite app
+        run: |
+          npm run build
+          cp dist/index.html dist/404.html   # SPA fallback
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: Client/dist
