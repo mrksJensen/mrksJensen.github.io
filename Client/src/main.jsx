@@ -14,6 +14,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
 /* import 'react-toastify/dist/ReacetToastify.css'; */
 
+console.log('API base URL:', import.meta.env.VITE_API_URL);
+
 const queryClient = new QueryClient();
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
