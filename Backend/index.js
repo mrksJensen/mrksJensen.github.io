@@ -91,7 +91,7 @@ import cors from "cors";
 const app = express();
 
 // --- CORS:-
-const allowlist = new Set([
+const allow = new Set([
   "https://mrksjensen.github.io",
   "http://localhost:5173",
 ]);
