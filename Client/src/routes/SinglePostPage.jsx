@@ -71,10 +71,13 @@ const SinglePostPage = () => {
               kdlanfsldf slkfmsælfmk asælk smflkm sdflkm sæ
             </p>
             <div className="flex gap-2">
-              <Link>
+              <Link target="_blank" to="https://github.com/mrksJensen">
                 <Image src="github-mark-white.svg" className="w-7 h-7"></Image>
               </Link>
-              <Link>
+              <Link
+                target="_blank"
+                to="https://www.linkedin.com/in/markus-jensen-1b4b742b0/"
+              >
                 <Image src="linkedin-svgrepo-com.svg" className="w-7 h-7"></Image>
               </Link>
             </div>

@@ -12,6 +12,7 @@ import Mainlayout from './layouts/Mainlayout.jsx';
 import { ClerkProvider } from '@clerk/clerk-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ToastContainer } from 'react-toastify';
+import AboutPage from './routes/AboutPage.jsx';
 /* import 'react-toastify/dist/ReacetToastify.css'; */
 
 console.log('API base URL:', import.meta.env.VITE_API_URL);
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <RegisterPage />,
+      },
+      {
+        path: '/about',
+        element: <AboutPage />,
       },
     ],
   },

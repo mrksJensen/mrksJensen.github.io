@@ -30,7 +30,7 @@ const Navbar = () => {
         </div>
         {/* MOBILE LINK LIST */}
         <div
-          className={`w-full h-screen flex flex-col items-center justify-center gap-8 font-medium text-lg absolute top-16 transition-all ease-in-out ${
+          className={`w-full h-screen flex flex-col items-center justify-center gap-8 font-medium text-lg absolute top-16 transition-all ease-in-out bg-slate-500 ${
             open ? '-right-0' : '-right-[100%]'
           }`}
         >
@@ -38,11 +38,13 @@ const Navbar = () => {
           {/* <Link to="/">Webudvikling & Frontend-teknologier</Link>
             <Link to="/">Automatisering & Scripting</Link> */}
           <Link to="/">Om</Link>
-          <Link to="/">
-            <button className="py-2 px-4 rounded-3xl bg-white text-black">
-              Login 👋
-            </button>
-          </Link>
+          <SignedOut>
+            <Link to="/login">
+              <button className="py-2 px-4 rounded-3xl bg-white text-black">
+                Login👋
+              </button>
+            </Link>
+          </SignedOut>
         </div>
       </div>
       {/* DESKTOP MENU */}
@@ -50,7 +52,7 @@ const Navbar = () => {
         <Link to="/">Hjem</Link>
         {/* <Link to="/">Webudvikling & Frontend-teknologier</Link>
             <Link to="/">Automatisering & Scripting</Link> */}
-        <Link to="/">Om</Link>
+        <Link to="/About">Om</Link>
 
         <SignedOut>
           <Link to="/login">
