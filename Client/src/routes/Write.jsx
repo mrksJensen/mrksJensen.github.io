@@ -1,12 +1,20 @@
 import { useAuth, useUser } from '@clerk/clerk-react';
 import 'react-quill-new/dist/quill.snow.css';
 import ReactQuill from 'react-quill-new';
+import Quill from 'quill';
+import ResizeModule from '@botom/quill-resize-module';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Upload from '../components/Upload';
+
+if (typeof window !== 'undefined') {
+  window.Quill = Quill;
+}
+
+Quill.register('modules/resize', ResizeModule);
 
 const Write = () => {
   const { isLoaded, isSignedIn } = useUser();
@@ -66,6 +74,27 @@ const Write = () => {
     mutation.mutate(data);
   };
 
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['clean'],
+    ],
+    resize: {
+      locale: {
+        altTip: 'Hold alt for Zoom',
+        floatLeft: 'Venstre',
+        floatRight: 'Højre',
+        center: 'Centrer',
+        restore: 'Gendan',
+      },
+      toolbar: {
+        alingTools: false,
+      },
+    },
+  };
+
   return (
     <div className="h-[calc(100vh-64px)] md:h-[calc(100vh-80px)] flex flex-col gap-6">
       <h1 className="text-cl font-light">Lav nyt indlæg</h1>
@@ -119,6 +148,7 @@ const Write = () => {
             value={value}
             onChange={setValue}
             readOnly={0 < progress && progress < 100}
+            modules={modules}
           />
         </div>
         <button
