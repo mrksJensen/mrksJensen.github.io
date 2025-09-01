@@ -5,7 +5,7 @@ function AboutPage() {
     <div className="flex flex-col max-w-2xl mx-auto mt-8 mb-8 px-4">
       <h1 className="text-3xl font-bold mb-4">Om Mig</h1>
       <p className="mb-6">
-        Velkommen til min portefolie side til 4. semester på datamatiker studiet
+        Velkommen til min portefolie side til 4. semester på datamatiker studiet.
       </p>
       <h2 className="text-2xl font-semibold mb-2 mt-6">Min Mission</h2>
       <p className="mb-6">
