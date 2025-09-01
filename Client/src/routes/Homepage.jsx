@@ -16,7 +16,7 @@ const Homepage = () => {
         {/* titles */}
         <div className="">
           <h1 className="text-slate-800 text-2xl md:text-5xl lg:text-6xl font-bold">
-            4. semester valgfags portefølje
+            4. semester valgfags portefolio
           </h1>
           <p className="mt-8 text-md md:text-xl">
             Jeg vil her på siden opdatere omkring min læring på 4. semester af datamatiker

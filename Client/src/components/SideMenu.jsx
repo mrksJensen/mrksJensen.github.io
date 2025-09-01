@@ -26,8 +26,7 @@ const SideMenu = () => {
     <div className="px-4 h-max sticky top-8">
       <h1 className="mb-4 text-sm font-medium">Søg</h1>
       <Search />
-      <h1 className="mb-4 text-sm font-medium">Filter</h1>
-      <h1 className="mb-4 text-sm font-medium">Valgfag</h1>
+      <h1 className="mb-4 mt-4 text-sm font-medium">Filter</h1>
       <div className="flex flex-col gap-2 text-sm">
         <label htmlFor="" className="flex items-center gap-2 cursor-pointer">
           <input
@@ -69,6 +68,7 @@ const SideMenu = () => {
           />
           Ældste
         </label>
+        <h1 className="mb-4 mt-4 text-sm font-medium">Kategorier</h1>
         <span
           className="underline cursor-pointer"
           onClick={() => handleCategoryChange('')}
@@ -86,6 +86,13 @@ const SideMenu = () => {
           onClick={() => handleCategoryChange('Automatisering-Scripting')}
         >
           Automatisering & Scripting
+        </span>
+
+        <span
+          className="underline cursor-pointer"
+          onClick={() => handleCategoryChange('learning-plan')}
+        >
+          Læringsplaner
         </span>
       </div>
     </div>

@@ -67,9 +67,7 @@ const SinglePostPage = () => {
               )}
               <Link className="text-yellow-700">{data.user.username}</Link>
             </div>
-            <p className="text-sm text-gray-800">
-              kdlanfsldf slkfmsælfmk asælk smflkm sdflkm sæ
-            </p>
+            <p className="text-sm text-gray-800"></p>
             <div className="flex gap-2">
               <Link target="_blank" to="https://github.com/mrksJensen">
                 <Image src="github-mark-white.svg" className="w-7 h-7"></Image>
@@ -83,11 +81,12 @@ const SinglePostPage = () => {
             </div>
           </div>
           <PostMenuActions post={data} />
-          <h1 className="mt-8 mb-4 text-sm font-medium">Valgfag</h1>
+          <h1 className="mt-8 mb-4 text-sm font-medium">Kategorier</h1>
           <div className="flex flex-col gap-2 text-sm">
             <Link className="underline">Alle</Link>
             <Link className="underline">Webudvikling & Frontend-teknologier</Link>
             <Link className="underline">Automatisering & Scripting</Link>
+            <Link className="underline">learning-plan</Link>
           </div>
           <h1 className="mt-8 mb-4 text-sm font-medium">Søg</h1>
           <Search />

@@ -37,7 +37,7 @@ const Navbar = () => {
           <Link to="/">Hjem</Link>
           {/* <Link to="/">Webudvikling & Frontend-teknologier</Link>
             <Link to="/">Automatisering & Scripting</Link> */}
-          <Link to="/">Om</Link>
+          <Link to="/about">Om</Link>
           <SignedOut>
             <Link to="/login">
               <button className="py-2 px-4 rounded-3xl bg-white text-black">
@@ -52,7 +52,7 @@ const Navbar = () => {
         <Link to="/">Hjem</Link>
         {/* <Link to="/">Webudvikling & Frontend-teknologier</Link>
             <Link to="/">Automatisering & Scripting</Link> */}
-        <Link to="/About">Om</Link>
+        <Link to="/about">Om</Link>
 
         <SignedOut>
           <Link to="/login">

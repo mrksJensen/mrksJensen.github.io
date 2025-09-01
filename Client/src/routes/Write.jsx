@@ -95,6 +95,7 @@ const Write = () => {
               Webudvikling & Frontend-teknologier
             </option>
             <option value="Automatisering-Scripting">Automatisering & Scripting</option>
+            <option value="learning-plan">Læringsplaner</option>
           </select>
         </div>
         <textarea
