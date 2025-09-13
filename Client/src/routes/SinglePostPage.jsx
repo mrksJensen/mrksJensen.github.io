@@ -89,10 +89,21 @@ const SinglePostPage = () => {
           <PostMenuActions post={data} />
           <h1 className="mt-8 mb-4 text-sm font-medium">Kategorier</h1>
           <div className="flex flex-col gap-2 text-sm">
-            <Link className="underline">Alle</Link>
-            <Link className="underline">Webudvikling & Frontend-teknologier</Link>
-            <Link className="underline">Automatisering & Scripting</Link>
-            <Link className="underline">learning-plan</Link>
+            <Link to="posts" className="underline">
+              Alle
+            </Link>
+            <Link to="posts?cat=Webudvikling-Frontend-teknologier" className="underline">
+              Webudvikling & Frontend-teknologier
+            </Link>
+            <Link to="posts?cat=Automatisering-Scripting" className="underline">
+              Automatisering & Scripting
+            </Link>
+            <Link to="posts?cat=learning-plan" className="underline">
+              Læringsplaner
+            </Link>
+            <Link to="posts?cat=projekt" className="underline">
+              Projekt
+            </Link>
           </div>
           <h1 className="mt-8 mb-4 text-sm font-medium">Søg</h1>
           <Search />

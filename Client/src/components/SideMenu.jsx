@@ -94,6 +94,12 @@ const SideMenu = () => {
         >
           Læringsplaner
         </span>
+        <span
+          className="underline cursor-pointer"
+          onClick={() => handleCategoryChange('projekt')}
+        >
+          Projekt
+        </span>
       </div>
     </div>
   );

@@ -125,6 +125,7 @@ const Write = () => {
             </option>
             <option value="Automatisering-Scripting">Automatisering & Scripting</option>
             <option value="learning-plan">Læringsplaner</option>
+            <option value="projekt">Projekt</option>
           </select>
         </div>
         <textarea

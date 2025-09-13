@@ -27,6 +27,12 @@ const MainCategories = () => {
         >
           Læringsplaner
         </Link>
+        <Link
+          to="posts?cat=projekt"
+          className="hover:bg-yellow-50 rounded-full px-4 py-2"
+        >
+          Projekt
+        </Link>
       </div>
       <span className="text-xl font-medium">|</span>
       {/* Search */}
